@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: result-app-deploy
+  labels:
+    name: result-app-deploy
+    app: test-voting-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: result-app
+      app: test-voting-app
+  template:
+    metadata:
+      name: result-app
+      labels:
+        name: result-app
+        app: test-voting-app
+    spec:
+      containers:
+        - name: result
+          image: ayobrown/resultapp
+          ports:
+            - containerPort: 80
